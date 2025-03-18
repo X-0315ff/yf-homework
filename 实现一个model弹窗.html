@@ -11,23 +11,34 @@
     position: fixed;
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
+    right: 0;
+    bottom: 0;
+    /* width: 100%;
+    height: 100%; */
     background-color: rgba(0, 0, 0, 0.4);
 }
 #model-content {
-  width: 300px;
+  position: relative;
+  width: 350px;
   height: 200px;
   margin: 10% auto;
   border: 1px solid #000;
+}
+#close {
+  position: absolute;
+  right: 10%;
+  bottom: 10px;
 }
 </style>
 <body>
   <button id="btu" style="width: 200px; height: 100px;">点我弹窗</button>
   <div id="model">
     <div id="model-content">
-      <h2>恭喜你！被我恭喜到了！</h2>
-      <button id="close">关闭</button>
+
+
+        <h2 style="text-align: center;">恭喜你！被我恭喜到了！</h2>
+        <button id="close">关闭</button>
+
     </div>
   </div>
 </body>
