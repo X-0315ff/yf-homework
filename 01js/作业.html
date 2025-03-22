@@ -87,16 +87,125 @@
   <p>分隐式转换和显示转换两种</p>
   <p>
     隐式转换：<br>
-    1.数字和字符串的拼接，会自动转换为字符串类型<br>
-    2.数字和布尔值的拼接，会自动转换为布尔类型<br>
-    3.数字和undefined的拼接，会自动转换为数字类型<br>
-    4.数字和null的拼接，会自动转换为数字类型<br>
-    5.数字和NaN的拼接，会自动转换为数字类型<br>
-    6.数字和Symbol的拼接，会自动转换为数字类型<br>
+  - 算术运算<br>
+  --- null 转换为 0<br>
+  --- undefined 转换为 NaN<br>
+
+  --- 加号 `+`<br>
+
+    ---------- 若一侧为字符串 → 转为字符串拼接。<br>
+
+    ----------  若两侧都是数字 → 进行数字加法。<br>
+
+    ----------  若多种类型混合，从左到右依次执行。<br>
+
+  --- 减号 `-`  ：会将字符串转换为数字再计算：<br>
+
+  
+
+- 字符串拼接<br>
+  --- 字符串拼接时，会将数字隐式转换为字符串<br>
+
+- 比较运算<br>
+  --- 在比较运算中，JS 会尝试将两边的值转换为相同类型<br>
+  --- console.log(null == undefined);    // true → 它们被认为“相等”<br>
+  --- console.log(null === undefined);   // false → 严格模式下不同类型不相等<br>
+
+- 逻辑运算<br>
+  --- `&&`：返回第一个为 `false` 的值或最后一个 `true` 值。<br>
+  --- `||`：返回第一个为 `true` 的值或最后一个 `false` 值。<br>
   </p>
   <p>
     显示转换：<br>
+    <p>
+      | **原始类型** | **转换为数字**              | **转换为字符串**                    | **转换为布尔值**               |<br>
+| ------------ | --------------------------- | ----------------------------------- | ------------------------------ |<br>
+| 字符串       | `Number(str)`               | -                                   | `Boolean(str)`                 |<br>
+| 数字         | -                           | `String(num)`                       | `Boolean(num)`                 |<br>
+| 布尔值       | `Number(bool)`              | `String(bool)`                      | -                              |<br>
+| 日期         | `Number(date)`              | `String(date)`                      | `Boolean(date)`                |<br>
+| 数组         | `Number([])` → `0`          | `arr.toString()`                    | `Boolean([])` → `true`         |<br>
+| 对象         | `Number({})` → `NaN`        | `String(obj)`                       | `Boolean({})` → `true`         |<br>
+| `null`       | `Number(null)` → `0`        | `String(null)` → `"null"`           | `Boolean(null)` → `false`      |<br>
+| `undefined`  | `Number(undefined)` → `NaN` | `String(undefined)` → `"undefined"` | `Boolean(undefined)` → `false` |<br>
+    </p>
   </p>
+</div>
+<div>
+  <h2>4.==，===，Object.is 区别，使用:</h2>
+  <p>`==` : 对数据进行**隐式转换**后再比较,转换规则大致是优先转换成数字</p>
+  <p>`===`  : 绝对相等，不做类型转换 </p>
+  console.log(NaN === NaN) // false <br>
+  console.log(+0 === -0) // true <br>
+  <p>`Object.is()` :  绝对相等，不做类型转换</p>
+  console.log(Object.is(NaN, NaN)) // true<br>
+  console.log(Object.is(+0, -0)) // false<br>
+</div>
+
+<div>
+  <h2>5.let，var, const 的区别（包括变量提升，作用域，是否绑定到window）:</h2>
+  <p>
+    <strong>以下是使用 `let` 时的注意事项：</strong><br>
+    <ol>
+      <li>允许声明和赋值同时进行</li>
+      <li>不允许重复声明</li>
+      <li>存在块级作用域</li>
+      <li>允许同时声明多个变量并赋值</li>
+      <li>JavaScript 中内置的一些关键字不能被当做变量名</li>
+      <li>无变量提升</li>
+    </ol>
+  </p>
+  <p><strong>const 和 `let` 区别不大：const是不可改变，当const是引用类型，可改变引用类型的值</strong></p>
+  <p>
+    <strong>以下是使用 `var` 时的注意事项：</strong>
+    <ol>
+      <li>允许声明和赋值同时进行</li>
+      <li>允许重复声明</li>
+      <li>存在函数作用域和全局作用域</li>
+      <li>存在变量提升
+        <ul>
+          <li>当var声明变量在全局作用域时，变量此时绑定在window上</li>
+        </ul>
+      </li>
+      <li>允许同时声明多个变量并赋值</li>
+      <li>无变量提升</li>
+    </ol>
+  </p>
+</div>
+
+<div>
+  <h2>6.数组和对象的常见遍历方式:</h2>
+  <ul><strong>数组</strong>
+    <li>for 循环：最基本的遍历方式，使用索引访问数组元素。</li>
+    <li>for...of 循环：用于遍历数组的值</li>
+    <li>forEach() ： 数组自带的遍历方法，无法中途终止。</li>
+    <li>map() ： 对数组中的每个元素进行操作，并返回新数组。</li>
+    <li> filter() : 筛选出符合条件的元素，返回新数组</li>
+    <li> reduce() : 对数组元素进行累加或计算。</li>
+    <li> every() 与 some() : 数组中的所有元素都满足条件时返回 true; 数组中有一个元素满足条件时返回 true</li>
+    <li>for...in : 遍历数组的索引</li>
+    <li> keys() 和 values() : 返回索引 ; 返回值</li>
+  </ul> 
+  <ul><strong>对象</strong>
+    <li>for...in ： 用于遍历对象的属性名。</li>
+    <li>Object.keys() ： 返回对象属性名数组。</li>
+    <li>Object.values() ： 返回对象属性值数组。</li>
+    <li>Object.entries() ： 返回 [键, 值] 对数组。</li>
+    <li>JSON.stringify()  将对象转为 JSON 字符串。</li>
+    let obj = { name: "Tom", age: 25 };<br>
+    console.log(JSON.stringify(obj));   // '{"name":"Tom","age":25}'<br>
+  </ul> 
+</div>
+
+<div>
+  <h2>7. 怎么判断一个对象是空对象</h2>
+  <ul>
+    <li>`Object.keys()` 判断属性数量 : Object.keys(obj).length === 0</li>
+    <li>`Object.getOwnPropertyNames()` 判断属性数量 : Object.getOwnPropertyNames(obj).length === 0</li>
+    <li>`Reflect.ownKeys()` 判断属性数量 : Reflect.ownKeys(obj).length === 0</li>
+    <li>`JSON.stringify()` 转字符串判断 : 将对象转为字符串，如果为空对象则为 '{}'</li>
+    <li>`lodash` 库的 `isEmpty()` 方法 : _.isEmpty(obj)</li>
+  </ul>
 </div>
 </body>
 </html>
