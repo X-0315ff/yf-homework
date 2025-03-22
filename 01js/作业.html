@@ -38,10 +38,65 @@
       <li>instanceof</li>
       <li>Object.prototype.toString.call()</li>
     </ol>
-    <p>typeof ： 
-      
+    <p><strong>typeof:</strong> <br>
+      console.log(typeof 1);// number <br>
+      console.log(typeof '');// string<br>
+      console.log(typeof '1');// string <br>
+      console.log(typeof null);// object<br>
+      console.log(typeof undefined);// undefined<br>
+      console.log(typeof {});// object<br>
+      console.log(typeof []);// object<br>
+      console.log(typeof F);// function<br>
+      <strong>在 JavaScript 中，`Object.prototype.toString.call()` 是一种**精准判断数据类型**的方法</strong>
+    </p>
+    <p>
+      <strong>instanceof:</strong> <br>
+      instanceof 运算符用于检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上。
+      <code>
+        function Car(make, model, year) {
+          this.make = make;
+          this.model = model;
+          this.year = year;
+        }
+        const auto = new Car("Honda", "Accord", 1998);
+        
+        console.log(auto instanceof Car);//  true
+        
+        console.log(auto instanceof Object);// true
+      </code>
+    </p>
+    <p><strong>typeof:</strong> <br>
+    语法：  Object.prototype.toString.call(value) <br>
+    // 返回值：  "[object 类型]"  <br>
+    [object String] → 字符串  <br>
+    [object Number] → 数字<br>
+    [object Array] → 数组<br>
+    [object Object] → 对象<br>
+    [object Null] → null<br>
+    [object Undefined] → undefined<br>
+    [object Function] → 函数<br>
+    [object Symbol] → Symbol 类型<br>
+    [object BigInt] → BigInt 类型<br>
+    <strong>
+      总结：在 JavaScript 中，`Object.prototype.toString.call()` 是一种精准判断数据类型的方法
+    </strong>
     </p>
   </div>
-
+<div>
+  <h2>3.数据类型转换:</h2>
+  <p>分隐式转换和显示转换两种</p>
+  <p>
+    隐式转换：<br>
+    1.数字和字符串的拼接，会自动转换为字符串类型<br>
+    2.数字和布尔值的拼接，会自动转换为布尔类型<br>
+    3.数字和undefined的拼接，会自动转换为数字类型<br>
+    4.数字和null的拼接，会自动转换为数字类型<br>
+    5.数字和NaN的拼接，会自动转换为数字类型<br>
+    6.数字和Symbol的拼接，会自动转换为数字类型<br>
+  </p>
+  <p>
+    显示转换：<br>
+  </p>
+</div>
 </body>
 </html>
