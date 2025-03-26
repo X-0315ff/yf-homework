@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <h3>这些数组方法改变原数组：</h3>
+  <p>对数组的增删：pop(),push(),shift(),unshfit(),splice()</p>
+  <p>数组的翻转：reverse()</p>
+  <p>对数组排序：sort()</p>
+  <h3>哪些方法会返回新的数组？</h3>
+  <p>splice()：返回删除的元素组成的数组</p>
+  <p>flat(),concat(),from()</p>
+  <h3>判断某个元素是否存在数组，存在则删除，不存在则在末尾添加该元素</h3>
+  <script>
+    function isfind(arr,item){
+      // index记录下标，如不存在则-1
+      let index = arr.indexOf(item)
+      if(index !== -1){
+        while(index !== -1){
+          arr.splice(index,1)
+          index = arr.indexOf(item) //再次查找
+        }
+      }else{
+        arr.push(item)
+      }
+    }
+  </script>
+  <h3>实现数组浅拷贝有哪些方式</h3>
+  <p> 扩展运算符 ...</p>
+  <p> slice()</p>
+  <p> concat()
+    <code>
+      const arr = [1, 2, 3, {a: 4}]
+      const copy = [].concat(arr)
+    </code>
+  </p>
+  <p> Array.from()</p>
+  <p>map()</p>
+  <h3>实现栈和队列</h3>
+  <p>特点：栈先进后出，队列先进先出</p>
+  <script>
+    function Stack(){
+      const stack = []
+      
+    }
+  </script>
+</body>
+<script>
+  // 1. 哪些方法改变原数组，哪些方法不会
+// 2. 哪些方法会返回新的数组
+// 3. 自己实现flat方法
+// 4. 判断某个元素是否存在数组，存在则删除，不存在则在末尾添加该元素
+// 5. 实现数组浅拷贝有哪些方式
+// 6. 实现栈和队列
+</script>
+</html>
