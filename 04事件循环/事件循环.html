@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p>
+    事件循环机制（Event Loop） 是 JavaScript 中处理异步任务的核心机制，它负责协调同步与异步任务的执行。由于 JavaScript 是单线程语言，一次只能执行一个任务。为了避免阻塞主线程，异步任务会被挂起，等到执行时机成熟后再被调度执行，而事件循环便是管理这种调度的机制。
+	在事件循环中，任务被分为同步任务和异步任务。同步任务会在主线程上直接执行，而异步任务则会被交给浏览器或 Node.js 内核处理。异步任务分为两类：宏任务（Macro Task）和微任务（Micro Task）。常见的宏任务包括 setTimeout、setInterval、setImmediate（Node.js 专有）、I/O 操作、DOM 渲染等，而微任务包括 Promise.then()、MutationObserver 和 process.nextTick()（Node.js 专有）。
+	事件循环的执行过程可以概括为以下步骤：首先，主线程会依次执行同步任务，直到任务队列为空。当同步任务全部执行完毕后，事件循环会检查微任务队列，并将所有微任务执行完毕。在微任务队列清空后，事件循环会取出一个宏任务执行，接着再次检查微任务队列并执行其中的任务。这个过程会不断循环。
+	在事件循环中，微任务的优先级高于宏任务。
+  </p>
+</body>
+</html>
